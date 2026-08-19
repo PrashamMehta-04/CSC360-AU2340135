@@ -15,13 +15,33 @@ public class SquareDrawing extends JPanel {
         Graphics2D g2d = (Graphics2D) g;
         
         // Set square properties
-        int x = 50;
-        int y = 50;
         int sideLength = 200;
+        int halfSide = sideLength / 2;
         
-        // Draw the outline of the square
+        // Find the center coordinates of the screen (panel)
+        int centerX = getWidth() / 2;
+        int centerY = getHeight() / 2;
+        
+        // Mark all four coordinates around the center
+        int topLeftX = centerX - halfSide;
+        int topLeftY = centerY - halfSide;
+        
+        int topRightX = centerX + halfSide;
+        int topRightY = centerY - halfSide;
+        
+        int bottomRightX = centerX + halfSide;
+        int bottomRightY = centerY + halfSide;
+        
+        int bottomLeftX = centerX - halfSide;
+        int bottomLeftY = centerY + halfSide;
+        
         g2d.setColor(Color.BLACK);
-        g2d.drawRect(x, y, sideLength, sideLength);
+        
+        // Draw lines between the adjacent vertices
+        g2d.drawLine(topLeftX, topLeftY, topRightX, topRightY);       // Top line
+        g2d.drawLine(topRightX, topRightY, bottomRightX, bottomRightY); // Right line
+        g2d.drawLine(bottomRightX, bottomRightY, bottomLeftX, bottomLeftY); // Bottom line
+        g2d.drawLine(bottomLeftX, bottomLeftY, topLeftX, topLeftY);   // Left line
     }
     
     @Override
